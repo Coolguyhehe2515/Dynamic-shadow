@@ -3,36 +3,28 @@
 #include "render/RenderHooks.hpp"
 
 class DynamicShadowsMod : public ll::mod::NativeMod {
-private:
-    ll::mod::NativeMod& mSelf;
-
 public:
     DynamicShadowsMod()
-        : mSelf(*ll::mod::NativeMod::current()) {}
+        : NativeMod(*NativeMod::current()) {}
 
-    bool load() {
-        getSelf().getLogger().info("DynamicShadows loading...");
+    bool load() override {
         return true;
     }
 
-    bool enable() {
-        getSelf().getLogger().info("DynamicShadows enabling...");
-
+    bool enable() override {
         if (!dynamicshadows::render::install()) {
-            getSelf().getLogger().error("Failed to install RenderLevel hook.");
             return false;
         }
 
         return true;
     }
 
-    bool disable() {
+    bool disable() override {
         dynamicshadows::render::uninstall();
-        getSelf().getLogger().info("DynamicShadows disabled.");
         return true;
     }
 
-    bool unload() {
+    bool unload() override {
         dynamicshadows::render::uninstall();
         return true;
     }
@@ -40,5 +32,5 @@ public:
 
 PL_REGISTER_MOD(
     DynamicShadowsMod,
-    std::make_unique<DynamicShadowsMod>()
+    DynamicShadowsMod()
 );
