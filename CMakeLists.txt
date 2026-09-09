@@ -37,7 +37,9 @@ FetchContent_MakeAvailable(preloader)
 
 add_library(${MOD_LIBRARY_NAME} SHARED
     src/main.cpp
+    src/DynamicShadowsMod.cpp
     src/render/RenderHooks.cpp
+)
 )
 
 target_include_directories(${MOD_LIBRARY_NAME}
