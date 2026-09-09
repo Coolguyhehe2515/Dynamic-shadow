@@ -1,0 +1,11 @@
+{
+    "id": "@MOD_ID@",
+    "name": "@MOD_NAME@",
+    "version": "@MOD_VERSION@",
+    "author": "@MOD_AUTHOR@",
+    "description": "Native dynamic shadow renderer for Minecraft Bedrock.",
+    "library": "@MOD_LIBRARY_NAME@",
+    "minecraft_versions": [
+        "26.4*"
+    ]
+}
