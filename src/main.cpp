@@ -10,31 +10,29 @@ public:
     DynamicShadowsMod()
         : mSelf(*ll::mod::NativeMod::current()) {}
 
-    bool load() override {
+    bool load() {
         getSelf().getLogger().info("DynamicShadows loading...");
         return true;
     }
 
-    bool enable() override {
+    bool enable() {
         getSelf().getLogger().info("DynamicShadows enabling...");
 
         if (!dynamicshadows::render::install()) {
-            getSelf().getLogger().error(
-                "Failed to install RenderLevel hook."
-            );
+            getSelf().getLogger().error("Failed to install RenderLevel hook.");
             return false;
         }
 
         return true;
     }
 
-    bool disable() override {
+    bool disable() {
         dynamicshadows::render::uninstall();
         getSelf().getLogger().info("DynamicShadows disabled.");
         return true;
     }
 
-    bool unload() override {
+    bool unload() {
         dynamicshadows::render::uninstall();
         return true;
     }
